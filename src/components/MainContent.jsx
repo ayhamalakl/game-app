@@ -8,7 +8,7 @@ const MainContent = ({ selectGenre, onSelectPlatform, selectPlatform, selectSort
         <>
             <div className="main-content col-span-5">
                 <GameHeading selectGenre={selectGenre} selectPlatform={selectPlatform} />
-                <div className="filter my-3">
+                <div className="filters flex flex-wrap gap-2 items-center py-2">
                     <PlatformSelector onSelectPlatform={onSelectPlatform} selectPlatform={selectPlatform} />
                     <SortSelector onSelectSortOrder={onSelectSortOrder} selectSortOrder={selectSortOrder} />
                 </div>

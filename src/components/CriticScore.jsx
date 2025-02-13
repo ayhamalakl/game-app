@@ -1,7 +1,14 @@
 const CriticScore = ({ score }) => {
-    let color = score > 75 ? "orange" : score > 60 ? "yellow" : "";
+    const getColor = (score) => {
+        if (score > 75) return { bg: "bg-green-600", text: "text-white" };
+        if (score > 60) return { bg: "bg-yellow-500", text: "text-black" };
+        return { bg: "bg-red-600", text: "text-white" };
+    };
+
+    const { bg, text } = getColor(score);
+
     return (
-        <span className={`bg-${color}-600 text-${color}-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-${color} dark:text-${color}-300`}>
+        <span className={`px-2.5 py-0.5 text-sm font-medium rounded ${bg} ${text}`}>
             {score}
         </span>
     );

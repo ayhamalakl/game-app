@@ -4,29 +4,38 @@ import SearchInput from "./SearchInput";
 
 const NavBar = ({ toggleTheme, theme, onSearch }) => {
     return (
-        <>
-            <div className="navbar-app py-2 border-b border-b-gray-400 mb-3 grid grid-cols-12 items-center">
-                {/* Logo Section */}
-
-                <div className="cover-logo col-span-1">
-                    <Logo image={LogoImag} text="gamp app header" className="logo-heder" />
-                </div>
-
-                {/* Search Section */}
-                <div className="cover-search col-span-10">
-                    <SearchInput onSearch={onSearch} />
-                </div>
-
-                {/* Theme Toggle Section */}
-                <div className="theme-mode col-span-1 flex justify-end">
-                    <label className="inline-flex items-center me-5 cursor-pointer">
-                        <input type="checkbox" value="" className="sr-only peer" onChange={toggleTheme} checked={theme === "dark"} />
-                        <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-teal-300 dark:peer-focus:ring-teal-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
-                        <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">{theme === "light" ? "light" : "Dark"}</span>
-                    </label>
-                </div>
+        <nav className="navbar-app py-3 px-4 border-b border-gray-400 mb-3 flex items-center justify-between bg-white dark:bg-gray-900 shadow-md">
+            {/* Logo Section */}
+            <div className="cover-logo flex items-center">
+                <Logo image={LogoImag} text="Game App Header" className="h-10 w-auto" />
             </div>
-        </>
+
+            {/* Search Section */}
+            <div className="cover-search flex-1 mx-4">
+                <SearchInput onSearch={onSearch} />
+            </div>
+
+            {/* Theme Toggle Section */}
+            <div className="theme-mode flex items-center">
+                <label className="flex items-center cursor-pointer">
+                    <input
+                        type="checkbox"
+                        className="sr-only peer"
+                        onChange={toggleTheme}
+                        checked={theme === "dark"}
+                        aria-label="Toggle Dark Mode"
+                    />
+                    <div className="relative w-12 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 transition-all duration-300 peer-focus:ring-4 peer-focus:ring-teal-300 dark:peer-focus:ring-teal-800 peer-checked:bg-teal-600">
+                        <div
+                            className="absolute top-0.5 left-1 bg-white border border-gray-300 rounded-full h-5 w-5 transition-all duration-300 dark:border-gray-600 peer-checked:translate-x-6"
+                        ></div>
+                    </div>
+                    <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        {theme === "light" ? "Light" : "Dark"}
+                    </span>
+                </label>
+            </div>
+        </nav>
     );
 };
 

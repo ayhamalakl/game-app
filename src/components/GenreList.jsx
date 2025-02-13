@@ -1,16 +1,16 @@
 import useGenres from "../hooks/useGenres";
+import { useState } from "react";
 
 const GenreList = ({ onSelectGenre }) => {
     const { data, isLoading } = useGenres();
+    const [selectedGenre, setSelectedGenre] = useState(null);
 
     if (isLoading)
         return (
-            <div role="status">
+            <div className="flex justify-center items-center py-4">
                 <svg
-                    aria-hidden="true"
-                    className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                    className="w-10 h-10 text-gray-300 animate-spin fill-blue-500"
                     viewBox="0 0 100 101"
-                    fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                 >
                     <path
@@ -22,21 +22,30 @@ const GenreList = ({ onSelectGenre }) => {
                         fill="currentFill"
                     />
                 </svg>
-                <span className="sr-only">Loading...</span>
             </div>
         );
 
     return (
-        <div className="w-48 ">
+        <div className="flex flex-col gap-2">
             {data.map((genre) => (
                 <button
                     key={genre.id}
                     type="button"
-                    onClick={() => onSelectGenre(genre)}
-                    className="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white"
+                    onClick={() => {
+                        onSelectGenre(genre);
+                        setSelectedGenre(genre.id);
+                    }}
+                    className={`flex items-center w-full p-2 text-sm font-medium rounded-lg transition duration-200 
+                               ${selectedGenre === genre.id ? "bg-blue-700 text-white" : "bg-gray-100 dark:bg-gray-800"} 
+                               hover:bg-blue-700 hover:text-white active:bg-blue-600 text-gray-900 dark:text-gray-100 
+                               focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 >
-                    <img src={genre.image_background} alt="" width={65} height={75} className="px-2" />
-                    {genre.name}
+                    <img
+                        src={genre.image_background}
+                        alt={genre.name}
+                        className="w-10 h-10 rounded-md object-cover mr-3"
+                    />
+                    <span>{genre.name}</span>
                 </button>
             ))}
         </div>

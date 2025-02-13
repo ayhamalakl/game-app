@@ -1,38 +1,57 @@
+import { useState } from "react";
 import usePlatform from "../hooks/usePlatform";
 
 const PlatformSelector = ({ onSelectPlatform, selectPlatform }) => {
     const { data, error } = usePlatform();
+    const [isOpen, setIsOpen] = useState(false);
 
     if (error) return null;
 
     return (
-        <>
-            <button
-                id="platformDropdownButton"
-                data-dropdown-toggle="platformDropdown"
-                className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-gry-600 dark:hover:bg-gary-700 dark:focus:ring-gray-800"
-                type="button"
-            >
-                {selectPlatform?.name || "Platforms"}
-                <svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
-                </svg>
-            </button>
+          <div className="relative inline-block text-left">
+    {/* زر القائمة */}
+    <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center justify-between w-44 px-5 py-2.5 
+                   bg-gray-200 text-gray-900 hover:bg-gray-300 
+                   dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 
+                   rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 
+                   dark:focus:ring-gray-800 font-medium text-sm"
+        type="button"
+    >
+        {selectPlatform?.name || "Platforms"}
+        <svg className="w-2.5 h-2.5 ml-2 transition-transform transform" viewBox="0 0 10 6">
+            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+        </svg>
+    </button>
 
-            <div id="platformDropdown" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="platformDropdownButton">
-                    {data.map((platform) => (
-                        <li
-                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            key={platform.id}
-                            onClick={() => onSelectPlatform(platform)}
-                        >
-                            {platform.slug}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </>
+    {/* القائمة المنبثقة */}
+    {isOpen && (
+        <div className="absolute z-10 mt-2 w-44 bg-white text-gray-900 
+                        dark:bg-gray-700 dark:text-white 
+                        divide-y divide-gray-100 dark:divide-gray-600 
+                        rounded-lg shadow-lg">
+            <ul className="py-2 text-sm">
+                {data.map((platform) => (
+                    <li
+                        key={platform.id}
+                        onClick={() => {
+                            onSelectPlatform(platform);
+                            setIsOpen(false);
+                        }}
+                        className="flex items-center px-4 py-2 cursor-pointer 
+                                   hover:bg-gray-100 dark:hover:bg-gray-600 
+                                   dark:hover:text-white"
+                    >
+                        <img src={platform.image_background} alt="" className="w-6 h-6 rounded-full mr-2" />
+                        {platform.name}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )}
+</div>
+
     );
 };
 

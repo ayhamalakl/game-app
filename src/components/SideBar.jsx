@@ -1,12 +1,21 @@
+import "../styelComponents/SideBar.css";
 import GenreList from "./GenreList";
+import { useState } from "react";
 
 const SideBar = ({ onSelectGenre }) => {
-    return (
-        <div className="sidebar-app w-60 bg-white dark:bg-gray-900 p-4 text-gray-900 dark:text-white shadow-lg h-screen transition-all duration-300">
-            {/* العنوان */}
-            <h3 className="text-xl font-bold mb-4">Genres</h3>
+    // حالة للتحكم في عرض الشريط الجانبي عند الحجم الصغير
+    const [isOpen, setIsOpen] = useState(false);
 
-            {/* قائمة التصنيفات */}
+    const toggleSidebar = () => {
+        setIsOpen(!isOpen);
+    };
+
+    return (
+        <div className={`sidebar-app ${isOpen ? "open" : ""}`}>
+            <div className="sidebar-toggle" onClick={toggleSidebar}>
+                ☰
+            </div>
+            <h3 className="sidebar-title">Genres</h3>
             <GenreList onSelectGenre={onSelectGenre} />
         </div>
     );

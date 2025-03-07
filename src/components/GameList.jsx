@@ -1,3 +1,4 @@
+import "../styelComponents/GameList.css";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
@@ -8,20 +9,18 @@ const GameList = ({ selectGenre, selectPlatform, selectSortOrder, searchText }) 
 
     if (error)
         return (
-            <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                <span className="font-medium">Danger alert!</span> {error}
+            <div class="error-message" role="alert">
+                <span class="error-title">Danger alert!</span> {error}
             </div>
         );
 
     return (
-        <>
-            <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                {isLoading && skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
-                {data.map((game) => (
-                    <GameCard key={game.id} game={game} />
-                ))}
-            </div>
-        </>
+        <div class="game-list">
+            {isLoading && skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
+            {data.map((game) => (
+                <GameCard key={game.id} game={game} />
+            ))}
+        </div>
     );
 };
 

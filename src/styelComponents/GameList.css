@@ -1,0 +1,74 @@
+/* تنسيق قائمة الألعاب */
+.game-list {
+    display: grid; /* استخدام نظام الشبكة (Grid) */
+    grid-template-columns: repeat(1, 1fr); /* عمود واحد على الشاشات الصغيرة */
+    gap: 10px; /* المسافة بين العناصر */
+    padding: 10px;
+    transition: all 0.3s ease; /* إضافة تأثيرات التحول */
+}
+
+/* تنسيق الرسالة عند وجود خطأ */
+.error-message {
+    padding: 12px;
+    margin-bottom: 16px;
+    background: #ffe5e5; /* خلفية وردية فاتحة */
+    color: #d8000c; /* نص أحمر */
+    border-radius: 8px; /* حواف مستديرة */
+    text-align: center;
+}
+
+/* عنوان الرسالة عند الخطأ */
+.error-title {
+    font-weight: bold; /* جعل العنوان بالخط العريض */
+}
+
+/* شاشات متوسطة الحجم (أكبر من 768px) */
+@media (min-width: 768px) {
+    .game-list {
+        grid-template-columns: repeat(2, 1fr); /* تقسيم الشبكة لعمودين */
+        gap: 20px; /* زيادة المسافة بين العناصر */
+        padding: 20px; /* زيادة الحشو */
+    }
+}
+
+/* شاشات أكبر (أكبر من 1024px) */
+@media (min-width: 1024px) {
+    .game-list {
+        grid-template-columns: repeat(3, 1fr); /* تقسيم الشبكة لثلاثة أعمدة */
+        gap: 24px; /* زيادة المسافة بين الأعمدة */
+        padding: 24px; /* زيادة الحشو */
+    }
+}
+
+/* شاشات صغيرة جدًا (أقل من 480px) */
+@media (max-width: 480px) {
+    .game-list {
+        padding: 8px; /* تقليص الحشو على الشاشات الصغيرة */
+    }
+}
+
+/* تأثيرات إضافية لتحسين الجمال */
+.game-list .game-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* تحسين التأثيرات عند التمرير */
+}
+
+.game-list .game-card:hover {
+    transform: translateY(-5px); /* رفع الكارد عند التمرير */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* إضافة ظل أكبر */
+}
+
+/* تأثير الأنيميشن عند ظهور العناصر */
+.game-list .game-card {
+    animation: fadeInUp 0.5s ease-out; /* تأثير عند الظهور */
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

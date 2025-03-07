@@ -1,0 +1,120 @@
+/* حاوية محدد الترتيب */
+.sort-selector {
+    position: relative;
+    display: inline-block;
+}
+
+/* تنسيق الزر الخاص بالترتيب */
+.sort-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* تأثير التركيز على الزر */
+.sort-button:focus {
+    border-color: teal;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 128, 128, 0.5);
+}
+
+/* أيقونة السهم */
+.dropdown-icon {
+    width: 12px;
+    height: 12px;
+    margin-left: 8px;
+    transition: transform 0.3s;
+}
+
+/* دوران السهم عند التفاعل */
+.rotate {
+    transform: rotate(180deg);
+}
+
+/* قائمة الترتيب المنسدلة */
+.sort-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px;
+    background: white; /* اللون الافتراضي للقائمة */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    z-index: 10;
+    color: black; /* النص باللون الأسود في الثيم الفاتح */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease;
+}
+
+/* إظهار القائمة عند التركيز أو التمرير على الزر */
+.sort-button:focus + .sort-menu,
+.sort-button:hover + .sort-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* إضافة دعم الثيم الداكن */
+.dark .sort-menu {
+    background: rgb(17 24 39);
+}
+
+/* عناصر القائمة */
+.sort-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* تأثير عند التمرير على العناصر */
+.sort-item:hover {
+    background-color: #f5f5f5;
+}
+
+
+
+/* ميديا كويري لتحسين التجاوب */
+
+/* الأجهزة اللوحية بحجم أقل من 768px */
+@media (max-width: 768px) {
+    .sort-button {
+        width: 180px;
+        padding: 8px;
+    }
+
+    .sort-menu {
+        width: 180px;
+    }
+
+    .dropdown-icon {
+        width: 14px;
+        height: 14px; /* زيادة حجم الأيقونة */
+    }
+}
+
+/* الهواتف المحمولة بحجم أقل من 480px */
+@media (max-width: 480px) {
+    .sort-button {
+        width: 160px;
+        font-size: 14px;
+    }
+
+    .sort-menu {
+        width: 160px;
+    }
+
+    .sort-item {
+        padding: 6px 10px;
+    }
+
+    .dropdown-icon {
+        width: 16px;
+        height: 16px; /* زيادة حجم الأيقونة */
+    }
+}

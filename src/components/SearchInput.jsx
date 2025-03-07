@@ -1,24 +1,24 @@
 import { useRef } from "react";
+import "../styelComponents/SearchInput.css";
 
-const SearchInput = ({ onSearch }) => {
+const SearchInput = ({ onSearch, theme }) => {
     const ref = useRef(null);
-
+    
     return (
-        <form
-            className="w-full"
+        <form 
+            class={`search-form ${theme === "dark" ? "dark" : "light"}`}
             onSubmit={(event) => {
                 event.preventDefault();
                 if (ref.current) onSearch(ref.current.value);
             }}
         >
-            <label htmlFor="search" className="sr-only">
+            <label htmlFor="search" class="sr-only">
                 Search
             </label>
-            <div className="relative">
+            <div class="search-container">
                 {/* أيقونة البحث */}
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <div class="search-icon">
                     <svg
-                        className="w-5 h-5 text-gray-500 dark:text-gray-300"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -37,8 +37,7 @@ const SearchInput = ({ onSearch }) => {
                     ref={ref}
                     type="search"
                     id="search"
-                    className="block w-full p-3 pl-10 text-sm rounded-lg border focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition 
-                               bg-gray-100 border-gray-300 text-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                    class="search-input"
                     placeholder="Search..."
                     required
                 />

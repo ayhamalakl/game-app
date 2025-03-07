@@ -1,0 +1,74 @@
+/* SearchInput.css */
+.search-form {
+    width: 100%;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: gray;
+    transition: color 0.3s ease;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    margin-right: 4px;
+}
+
+/* دعم الثيم الفاتح */
+.light .search-input {
+    background-color: #fff;
+    color: #000;
+    border-color: #ccc;
+}
+
+/* دعم الثيم الداكن */
+.dark .search-input {
+    background-color: #040b1b;
+    color: #fff;
+    border-color: #040b1b;
+}
+
+/* تأثير عند التركيز */
+.search-input:focus {
+    border-color: teal;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 128, 128, 0.5);
+}
+
+/* تغيير لون الأيقونة عند التركيز */
+.search-input:focus + .search-icon {
+    color: teal;
+}
+
+@media (max-width: 768px) {
+    .search-input {
+        padding: 10px 10px 10px 35px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-input {
+        padding: 8px 8px 8px 30px;
+        font-size: 12px;
+    }
+}
+

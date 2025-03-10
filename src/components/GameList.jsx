@@ -1,25 +1,20 @@
+// GameList.jsx
 import "../styelComponents/GameList.css";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 
 const GameList = ({ selectGenre, selectPlatform, selectSortOrder, searchText }) => {
-    const { data, error, isLoading } = useGames(selectGenre, selectPlatform, selectSortOrder, searchText);
-    const skeletons = [1, 2, 3, 4, 5, 6];
+    const { data = [], error, isLoading } = useGames(selectGenre, selectPlatform, selectSortOrder, searchText);
+    const skeletons = Array.from({ length: 6 }, (_, i) => i + 1);
 
     if (error)
-        return (
-            <div class="error-message" role="alert">
-                <span class="error-title">Danger alert!</span> {error}
-            </div>
-        );
+        return <div className="error-message" role="alert">⚠ {error.message}</div>;
 
     return (
-        <div class="game-list">
+        <div className="game-list">
             {isLoading && skeletons.map((skeleton) => <GameCardSkeleton key={skeleton} />)}
-            {data.map((game) => (
-                <GameCard key={game.id} game={game} />
-            ))}
+            {data.map((game) => <GameCard key={game.id} game={game} />)}
         </div>
     );
 };

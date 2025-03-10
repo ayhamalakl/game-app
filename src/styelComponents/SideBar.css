@@ -1,4 +1,4 @@
-/* SideBar.css */
+/* تنسيق الشريط الجانبي */
 .sidebar-app {
     width: 240px;
     padding: 16px;
@@ -13,53 +13,42 @@
     margin-bottom: 16px;
 }
 
+/* تحسين التصميم للشاشات المتوسطة */
 @media (max-width: 1024px) {
     .sidebar-app {
         width: 200px;
     }
 }
 
+/* تحسين التصميم للشاشات اللوحية */
 @media (max-width: 768px) {
     .sidebar-app {
-        width: 180px;
+        width: 100%;
+        height: auto;
         padding: 12px;
+        position: relative;
+        box-shadow: none;
     }
 
     .sidebar-title {
         font-size: 18px;
+        text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.6);
     }
 }
 
+/* 🛠 تحسين التصميم للشاشات الصغيرة (الجوالات) */
 @media (max-width: 480px) {
     .sidebar-app {
-        width: 0; /* إخفاء الشريط الجانبي عند الحجم الصغير */
+        width: 100%;
         height: auto;
-        padding: 0;
-        overflow: hidden; /* إخفاء المحتويات */
+        position: relative;
+        padding: 12px;
+        box-shadow: none;
+        order: 1;
     }
 
     .sidebar-title {
         font-size: 16px;
         text-align: center;
-    }
-
-    .sidebar-toggle {
-        display: block;
-        width: 40px;
-        height: 40px;
-        background-color: #333;
-        color: white;
-        border-radius: 50%;
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        font-size: 24px;
-        cursor: pointer;
-        z-index: 1000;
-    }
-
-    .sidebar-app.open {
-        width: 240px; /* عند فتح الشريط الجانبي */
-        padding: 16px;
     }
 }

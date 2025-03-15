@@ -1,8 +1,9 @@
 import "../styelComponents/SortSelector.css";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useReducer } from "react";
+import toggleReducer from "../reducer/toggleReducer";
 
 const SortSelector = ({ onSelectSortOrder, selectSortOrder }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [state, dispatch] = useReducer(toggleReducer, { isOpen: false });
     const dropdownRef = useRef(null);
 
     const sortOrders = [
@@ -19,7 +20,7 @@ const SortSelector = ({ onSelectSortOrder, selectSortOrder }) => {
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setIsOpen(false);
+                dispatch({ type: "CLOSE" });
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
@@ -27,21 +28,21 @@ const SortSelector = ({ onSelectSortOrder, selectSortOrder }) => {
     }, []);
 
     return (
-        <div class="sort-selector" ref={dropdownRef}>
-            <button onClick={() => setIsOpen(!isOpen)} class="sort-button" type="button">
+        <div className="sort-selector" ref={dropdownRef}>
+            <button onClick={() => dispatch({ type: "TOGGLE" })} className="sort-button" type="button">
                 Order by: {selectedSortLabel}
-                <svg class={`dropdown-icon ${isOpen ? "rotate" : ""}`} viewBox="0 0 10 6">
+                <svg className={`dropdown-icon ${state.isOpen ? "rotate" : ""}`} viewBox="0 0 10 6">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                 </svg>
             </button>
 
-            {isOpen && (
-                <div class="sort-menu">
+            {state.isOpen && (
+                <div className="sort-menu">
                     <ul>
                         {sortOrders.map((order) => (
-                            <li key={order.value} class="sort-item" onClick={() => {
+                            <li key={order.value} className="sort-item" onClick={() => {
                                 onSelectSortOrder(order.value);
-                                setIsOpen(false);
+                                dispatch({ type: "CLOSE" });
                             }}>
                                 {order.label}
                             </li>

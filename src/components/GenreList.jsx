@@ -1,11 +1,12 @@
 // GenreList.jsx
 import useGenres from "../hooks/useGenres";
-import { useState } from "react";
+import { useReducer } from "react";
+import genreReducer from "../reducer/genreReducer"; // استدعاء الـ reducer
 import "../styelComponents/GenerList.css";
 
 const GenreList = ({ onSelectGenre }) => {
     const { data = [], isLoading } = useGenres();
-    const [selectedGenre, setSelectedGenre] = useState(null);
+    const [selectedGenre, dispatch] = useReducer(genreReducer, null); // استبدال useState
 
     if (isLoading)
         return <div className="loader-container"><div className="loader"></div></div>;
@@ -17,7 +18,7 @@ const GenreList = ({ onSelectGenre }) => {
                     key={genre.id}
                     onClick={() => {
                         onSelectGenre(genre);
-                        setSelectedGenre(genre.id);
+                        dispatch({ type: "SELECT_GENRE", payload: genre.id }); // استخدام dispatch
                     }}
                     className={`genre-item ${selectedGenre === genre.id ? "active" : ""}`}
                 >

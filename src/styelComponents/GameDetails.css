@@ -1,0 +1,378 @@
+/* إعدادات الحاوية العامة للتفاصيل */
+.game-details-container {
+    background: linear-gradient(145deg, #1e293b, #0f172a); /* تأثير التدرج اللوني للخلفية */
+    animation: backgroundAnimation 10s infinite alternate; /* تأثير انيميشن الخلفية */
+    padding: 20px;
+    border-radius: 16px; /* جعل الحواف دائرية */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* إضافة تأثير الظل */
+    color: #f8fafc; /* لون النص */
+    margin: 20px;
+    transition: all 0.3s ease-in-out; /* تأثير التغيير السلس عند التفاعل */
+}
+
+/* تنسيق عنوان اللعبة */
+.game-title {
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6); /* تدرج لوني جميل */
+    background-clip: text; /* تطبيق التدرج على النص */
+    -webkit-background-clip: text;
+    color: transparent; /* جعل اللون شفاف لتطبيق التدرج على النص */
+    animation: textAnimation 5s infinite alternate; /* تأثير انيميشن للنص */
+}
+
+/* تنسيق عنوان اللعبة الأصلي */
+.game-original-title {
+    font-size: 1.2rem;
+    color: #a78bfa;
+    margin: 5px 0 25px;
+}
+
+/* تنسيق زر التفاصيل */
+.game-details-button {
+    background-color: #1e293b;
+    color: #f8fafc;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    display: inline-block; /* التحكم في المسافة بين الأزرار */
+}
+
+.game-details-button:hover {
+    background-color: #38bdf8;
+    color: #0f172a;
+    box-shadow: 0 0 15px #38bdf8;
+    transform: translateY(-2px); /* تأثير رفع الزر عند التفاعل */
+}
+
+/* إعدادات السلايدر للصور */
+.image-slider {
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+/* تنسيق صورة اللعبة */
+.game-image {
+    width: 50%;
+    border-radius: 100%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    animation: none;
+    margin: 0 auto;
+    display: block;
+}
+
+/* تأثير عند التفاعل مع صورة اللعبة */
+.game-image:hover {
+    animation: spinAndMove 3s ease-in-out forwards;
+}
+
+/* تأثير انيميشن التدوير والتحريك للصورة */
+@keyframes spinAndMove {
+    0% {
+        transform: rotate(0deg) translateX(0);
+    }
+    30% {
+        transform: rotate(360deg) translateX(0);
+    }
+    50% {
+        transform: rotate(360deg) translateX(100%);
+    }
+    70% {
+        transform: rotate(360deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(360deg) translateX(0);
+    }
+}
+
+/* إعدادات التنقل في السلايدر */
+.slider-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+}
+
+/* تنسيق النقاط الخاصة بالسلايدر */
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid #38bdf8;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* تنسيق النقطة النشطة في السلايدر */
+.slider-dot.active {
+    background: #38bdf8;
+    box-shadow: 0 0 10px #38bdf8;
+}
+
+/* إعدادات تنسيق معلومات اللعبة */
+.game-info {
+    display: grid;
+    gap: 20px;
+    animation: fadeIn 1s ease-in-out; /* تأثير ظهور المعلومات */
+}
+
+.game-info-primary, .game-info-secondary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    background: rgba(30, 41, 59, 0.5);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px); /* تأثير التمويه الخلفي */
+}
+
+.game-data {
+    font-weight: bold;
+    color: #38bdf8;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+/* إعدادات عنوان القسم */
+.section-title {
+    color: #38bdf8;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+/* تنسيق الإحصائيات */
+.game-stats {
+    background: rgba(30, 41, 59, 0.5);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+/* تنسيق شبكة الإحصائيات */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+/* تنسيق العناصر داخل الإحصائيات */
+.stat-item {
+    background: rgba(56, 189, 248, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* تأثير عند التفاعل مع العناصر */
+.stat-item:hover {
+    transform: translateY(-2px);
+    background: rgba(56, 189, 248, 0.2);
+}
+
+/* إعدادات الشبكة الاجتماعية */
+.social-media {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 12px;
+}
+
+.social-grid {
+    display: grid;
+    gap: 15px;
+}
+
+/* تنسيق روابط الشبكات الاجتماعية */
+.social-link {
+    display: block;
+    padding: 10px;
+    background: rgba(56, 189, 248, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* تأثير عند التفاعل مع روابط الشبكات الاجتماعية */
+.social-link:hover {
+    background: rgba(56, 189, 248, 0.2);
+    transform: translateX(5px);
+}
+
+/* تنسيق العلامات */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.tag {
+    background: rgba(56, 189, 248, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    border: 1px solid #38bdf8;
+    transition: all 0.3s ease;
+}
+
+/* تأثير عند التفاعل مع العلامات */
+.tag:hover {
+    background: rgba(56, 189, 248, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.2);
+}
+
+/* تنسيق الأسماء البديلة */
+.alternative-names {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 12px;
+}
+
+.names-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.alt-name {
+    background: rgba(56, 189, 248, 0.1);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* تنسيق النصوص الوصفية */
+.description-text {
+    line-height: 1.6;
+    margin-top: 10px;
+    padding: 20px;
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 12px;
+    border-left: 4px solid #38bdf8;
+}
+
+/* تأثيرات الخلفية */
+@keyframes backgroundAnimation {
+    from { background: linear-gradient(145deg, #1e293b, #0f172a); }
+    to { background: linear-gradient(145deg, #0f172a, #1e293b); }
+}
+
+/* تأثيرات النص */
+@keyframes textAnimation {
+    from { background-position: 0% 50%; }
+    to { background-position: 100% 50%; }
+}
+
+/* تأثيرات ظهور المعلومات */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* تنسيق إحصائيات الشبكات الاجتماعية */
+.social-stats {
+    background: rgba(56, 189, 248, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.social-stats p {
+    margin: 5px 0;
+    color: #f8fafc;
+    font-size: 0.9em;
+}
+
+.stat-label {
+    color: #38bdf8;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #f8fafc;
+}
+
+/* إعدادات التصميم المتجاوب لأحجام الشاشات المختلفة */
+
+/* الشاشات الكبيرة والمتوسطة */
+@media (max-width: 1024px) {
+    .game-details-container {
+        margin: 10px;
+    }
+
+    .game-image {
+        width: 70%;
+        height: 350px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+}
+
+/* الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    .game-image {
+        width: 80%;
+        height: 300px;
+    }
+    
+    .game-info-primary, 
+    .game-info-secondary {
+        grid-template-columns: 1fr;
+    }
+
+    .social-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* الشاشات الأصغر جداً */
+@media (max-width: 480px) {
+    .game-title {
+        font-size: 1.5rem;
+    }
+
+    .game-image {
+        width: 90%;
+        height: 250px;
+    }
+
+    .game-details-container {
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tag {
+        font-size: 0.8em;
+        padding: 4px 8px;
+    }
+}

@@ -77,14 +77,39 @@
 }
 
 /* أيقونة المنصة داخل القائمة */
+/* أيقونة المنصة داخل القائمة */
 .platform-icon {
     width: 24px;
     height: 24px;
     border-radius: 50%;
     margin-right: 8px;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
-.rotate {
-    transform: rotate(180deg);
+
+/* تأثير دوران الأيقونة عند التحويم */
+@keyframes rotateIcon {
+    0% {
+        transform: rotate(0deg) scale(1.1) translateZ(0px);
+    }
+    50% {
+        transform: rotate(180deg) scale(0.9) translateZ(-20px);
+    }
+    100% {
+        transform: rotate(360deg) scale(1.1) translateZ(0px);
+    }
+}
+
+/* تفعيل الدوران عند التحويم */
+.platform-item:hover .platform-icon {
+    animation: rotateIcon 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    filter: brightness(0.85) contrast(1.1);
+}
+
+/* تسريع الدوران عند الضغط */
+.platform-item:active .platform-icon {
+    animation: rotateIcon 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* ميديا كويري لتحسين التجاوب */

@@ -1,22 +1,29 @@
+// استيراد خطاف المرجع من React
 import { useRef } from "react";
+// استيراد ملف التنسيق
 import "../styelComponents/SearchInput.css";
 
+// مكون حقل البحث الذي يستقبل دالة البحث والسمة
 const SearchInput = ({ onSearch, theme }) => {
+    // إنشاء مرجع للوصول إلى قيمة حقل البحث
     const ref = useRef(null);
     
     return (
         <form 
+            // تطبيق تنسيق النموذج حسب السمة
             class={`search-form ${theme === "dark" ? "dark" : "light"}`}
+            // معالجة تقديم النموذج
             onSubmit={(event) => {
                 event.preventDefault();
                 if (ref.current) onSearch(ref.current.value);
             }}
         >
+            {/* تسمية حقل البحث للقراء الآليين */}
             <label htmlFor="search" class="sr-only">
                 Search
             </label>
             <div class="search-container">
-                {/* أيقونة البحث */}
+                {/* حاوية أيقونة البحث */}
                 <div class="search-icon">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -32,18 +39,19 @@ const SearchInput = ({ onSearch, theme }) => {
                         />
                     </svg>
                 </div>
-                {/* حقل الإدخال */}
+                {/* حقل إدخال البحث */}
                 <input
-                    ref={ref}
-                    type="search"
-                    id="search"
-                    class="search-input"
-                    placeholder="Search..."
-                    required
+                    ref={ref}                    // ربط المرجع بحقل الإدخال
+                    type="search"                // نوع الحقل للبحث
+                    id="search"                  // معرف الحقل
+                    class="search-input"         // تنسيق الحقل
+                    placeholder="Search..."      // نص تلميحي
+                    required                     // حقل مطلوب
                 />
             </div>
         </form>
     );
 };
 
+// تصدير المكون للاستخدام في أجزاء أخرى من التطبيق
 export default SearchInput;

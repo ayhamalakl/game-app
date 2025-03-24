@@ -1,95 +1,121 @@
-/* تحسين التصميم وإضافة أنيميشن عند اختيار النوع */
+/* تنسيق قائمة الأنواع */
 .genre-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-height: 400px;
-    overflow-y: auto;
-    padding-right: 5px;
-    border-radius: 12px;
+    display: flex; /* استخدام flexbox لترتيب العناصر بشكل مرن */
+    flex-direction: column; /* ترتيب العناصر عموديًا */
+    gap: 10px; /* المسافة بين العناصر */
+    border-radius: 12px; /* حواف مستديرة */
+    padding: 10px; /* الحشو داخل العنصر */
+    transition: all 0.3s ease; /* إضافة تأثيرات الانتقال لجميع الخصائص */
 }
 
-/* تحسين التفاعل */
+/* تنسيق عنصر النوع */
 .genre-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    display: flex; /* استخدام flexbox لترتيب المحتويات داخل العنصر */
+    align-items: center; /* محاذاة العناصر داخل العنصر بشكل عمودي */
+    padding: 12px 16px; /* إضافة حشوة داخل العنصر */
+    font-size: 16px; /* حجم الخط */
+    font-weight: 500; /* سمك الخط */
+    border-radius: 10px; /* حواف مستديرة */
+    cursor: pointer; /* تغيير المؤشر عند التمرير فوق العنصر */
+    transition: all 0.3s ease; /* إضافة تأثيرات الانتقال لجميع الخصائص */
+    background: transparent; /* خلفية شفافة */
+    border: 10px; /* إضافة حدود */
 }
 
+/* تأثير التمرير فوق العنصر أو تفعيل العنصر */
 .genre-item:hover,
 .genre-item.active {
-    background-color: #404a73;
-    color: white;
-    transform: scale(1.05);
+    background: linear-gradient(145deg, #404a73, #2a3152); /* تأثير التدرج عند التمرير أو عند التفعيل */
+    color: #38bdf8; /* تغيير اللون إلى الأزرق عند التمرير أو التفعيل */
+    transform: scale(1.05); /* تكبير العنصر قليلاً */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* إضافة ظل حول العنصر */
 }
 
-/* تحريك الصورة عند تحديد النوع */
+/* تنسيق صورة النوع */
+.genre-image {
+    width: 45px; /* عرض الصورة */
+    height: 45px; /* ارتفاع الصورة */
+    border-radius: 8px; /* حواف مستديرة للصورة */
+    object-fit: cover; /* ضمان ملاءمة الصورة داخل المساحة المحددة */
+    margin-right: 12px; /* إضافة مسافة على اليمين */
+    transition: all 0.3s ease; /* إضافة تأثيرات الانتقال لجميع الخصائص */
+}
+
+/* تأثير الحركة للصورة عندما يتم تفعيل العنصر */
 .genre-item.active .genre-image {
-    animation: moveLeftRotate 0.5s ease-in-out forwards;
+    animation: moveLeftRotate 0.5s ease-in-out forwards; /* تطبيق الحركة المخصصة */
 }
-.genre-item:hover,
-.genre-item.active {
-    background-color: #404a73;
-    color: white;
-    transform: scale(1.05);
+
+/* تنسيق اسم النوع */
+.genre-name {
+    flex: 1; /* السماح للنص بالتمدد لملء المساحة المتاحة */
+    text-align: left; /* محاذاة النص إلى اليسار */
+    white-space: nowrap; /* منع التفاف النص */
+    overflow: hidden; /* إخفاء النص الزائد */
+    text-overflow: ellipsis; /* إضافة نقاط في حالة النص الزائد */
 }
-/* أنيميشن تحرك الصورة إلى اليسار مع الدوران */
+
+/* تعريف حركة التدوير والتحرك للصورة */
 @keyframes moveLeftRotate {
     0% {
-        transform: translateX(0) rotate(0);
+        transform: translateX(0) rotate(0); /* في البداية */
     }
     50% {
-        transform: translateX(-10px) rotate(-20deg);
+        transform: translateX(-10px) rotate(-20deg); /* التحرك والتدوير نصف الطريق */
     }
     100% {
-        transform: translateX(-15px) rotate(-30deg);
+        transform: translateX(-15px) rotate(-30deg); /* النهاية مع تحرك وتدوير أكبر */
     }
 }
 
-/* حجم الصورة الافتراضي */
-.genre-image {
-    width: 45px;
-    height: 45px;
-    border-radius: 8px;
-    object-fit: cover;
-    margin-right: 12px;
-}
-
-/* تحسين التصميم على الشاشات الصغيرة */
-@media (max-width: 1024px) {
+/* تنسيق استجابة الشاشة الكبيرة */
+@media (max-width: 1500px) {
     .genre-list {
-        max-height: 350px;
+        opacity: 0; /* إخفاء القائمة */
+        transform: translateX(-20px); /* تحريك القائمة إلى اليسار */
+        transition: all 0.3s ease; /* إضافة تأثيرات الانتقال */
+    }
+
+    .genre-list-open {
+        opacity: 1; /* إظهار القائمة */
+        transform: translateX(0); /* إعادة القائمة إلى موضعها الأصلي */
     }
 }
 
+/* تنسيق استجابة الشاشات الصغيرة */
 @media (max-width: 768px) {
-    .genre-list {
-        max-height: 300px;
-        width: 100%;
-        position: relative;
-    }
-}
-
-@media (max-width: 480px) {
-    .genre-list {
-        width: 100%;
-        position: relative;
-        order: 1;
-        padding: 12px;
-    }
-
     .genre-item {
-        font-size: 14px;
-        padding: 10px;
+        padding: 10px; /* تقليل الحشوة */
+        font-size: 14px; /* تقليل حجم الخط */
     }
 
     .genre-image {
-        width: 35px;
-        height: 35px;
+        width: 35px; /* تقليل عرض الصورة */
+        height: 35px; /* تقليل ارتفاع الصورة */
+    }
+}
+
+/* تنسيق حاوية التحميل */
+.loader-container {
+    display: flex; /* استخدام flexbox لترتيب العناصر */
+    justify-content: center; /* محاذاة العناصر في المنتصف أفقيًا */
+    align-items: center; /* محاذاة العناصر في المنتصف عموديًا */
+    padding: 20px; /* إضافة حشوة */
+}
+
+/* تنسيق دوار التحميل */
+.loader {
+    width: 40px; /* عرض الدوار */
+    height: 40px; /* ارتفاع الدوار */
+    border: 4px solid #38bdf8; /* حدود الدوار بلون أزرق */
+    border-radius: 50%; /* جعل الشكل دائريًا */
+    border-top-color: transparent; /* جعل الجزء العلوي شفافًا */
+    animation: spin 1s linear infinite; /* تطبيق حركة التدوير */
+}
+
+/* تعريف حركة التدوير */
+@keyframes spin {
+    to {
+        transform: rotate(360deg); /* تدوير العنصر بالكامل */
     }
 }

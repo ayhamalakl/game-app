@@ -1,32 +1,35 @@
-import "../styelComponents/NavBar.css";
-import Logo from "./Logo";
-import LogoImag from "../assets/images/logo.webp";
-import SearchInput from "./SearchInput";
+// استيراد المكونات والأصول المطلوبة
+import "../styelComponents/NavBar.css";              // استيراد ملف التنسيق
+import Logo from "./Logo";                          // استيراد مكون الشعار
+import LogoImag from "../assets/images/logo.webp";   // استيراد صورة الشعار
+import SearchInput from "./SearchInput";             // استيراد مكون البحث
 
+// مكون شريط التنقل الذي يستقبل خصائص تبديل السمة والبحث
 const NavBar = ({ toggleTheme, theme, onSearch }) => {
     return (
         <nav class="navbar">
-            {/* Logo Section */}
+            {/* قسم الشعار */}
             <div class="logo-container">
                 <Logo image={LogoImag} text="Game App Header" class="logo" />
             </div>
 
-            {/* Search Section */}
+            {/* قسم البحث */}
             <div class="search-container">
                 <SearchInput onSearch={onSearch} />
             </div>
 
-            {/* Theme Toggle Section */}
+            {/* قسم تبديل السمة */}
             <div class="theme-toggle">
                 <label class="toggle-label">
                     <input
                         type="checkbox"
                         class="toggle-input"
-                        onChange={toggleTheme}
-                        checked={theme === "dark"}
-                        aria-label="Toggle Dark Mode"
+                        onChange={toggleTheme}           // دالة تغيير السمة
+                        checked={theme === "dark"}       // حالة السمة الحالية
+                        aria-label="Toggle Dark Mode"    // نص وصفي للقارئ الآلي
                     />
                     <div class="toggle-slider"></div>
+                    {/* نص يعرض السمة الحالية */}
                     <span class="toggle-text">{theme === "light" ? "Light" : "Dark"}</span>
                 </label>
             </div>
@@ -34,4 +37,5 @@ const NavBar = ({ toggleTheme, theme, onSearch }) => {
     );
 };
 
+// تصدير المكون للاستخدام في أجزاء أخرى من التطبيق
 export default NavBar;

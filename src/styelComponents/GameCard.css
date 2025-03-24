@@ -1,145 +1,336 @@
-/* تنسيق الكاردات الخاصة بالألعاب */
+/* تنسيق البطاقة الخاصة باللعبة */
 .game-card {
-    max-width: 520px; /* تعيين أقصى عرض للكارد */
-    border: 1px solid #ccc; /* حدود رقيقة */
-    border-radius: 12px; /* الحواف المستديرة */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* تأثير الظل الخفيف */
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease; /* إضافة تأثيرات الحركة عند التمرير */
-    overflow: hidden;
-    background-color: #ffffff; /* خلفية الكارد بيضاء */
-    position: relative;
-    display: flex;
-    flex-direction: column;
+    max-width: 520px; /* أقصى عرض للبطاقة */
+    border: 1px solid #ccc; /* تحديد لون الحدود */
+    border-radius: 12px; /* تدوير الزوايا */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* إضافة الظل */
+    transition: all 0.3s ease; /* تأثير التغيير عند المرور */
+    overflow: hidden; /* إخفاء المحتوى الزائد */
+    position: relative; /* تحديد الموضع بالنسبة للمحتوى */
+    display: flex; /* استخدام الفليكس لتنظيم المحتوى داخل البطاقة */
+    flex-direction: column; /* ترتيب العناصر عمودياً */
 }
 
-/* تأثير عند التمرير على الكارد */
+/* تأثير عند التمرير فوق البطاقة */
 .game-card:hover {
-    transform: scale(1.05); /* تكبير الكارد عند التمرير */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* زيادة الظل لإعطاء تأثير العمق */
+    transform: scale(1.05); /* تكبير البطاقة قليلاً */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* تعزيز الظل */
     border: 1px solid #1e40af; /* تغيير اللون عند التمرير */
-    z-index: 10; /* رفع ترتيب العنصر فوق العناصر الأخرى */
+    z-index: 10; /* رفع مستوى العنصر */
 }
 
-/* تنسيق صورة الكارد */
+/* تنسيق صورة اللعبة */
 .game-card-image {
     width: 100%; /* عرض الصورة 100% */
-    height: 240px; /* ارتفاع الصورة */
-    object-fit: cover; /* تأكد من ملء الصورة بدون تشويه */
-    border-top-left-radius: 12px; /* تنسيق الحواف العلوية للصورة */
-    border-top-right-radius: 12px;
-    transition: all 0.5s ease; /* إضافة تأثيرات انتقاليه */
+    height: 240px; /* تحديد ارتفاع الصورة */
+    object-fit: cover; /* ملء الصورة مع الحفاظ على النسب */
+    border-top-left-radius: 12px; /* تدوير الزاوية العليا اليسرى */
+    border-top-right-radius: 12px; /* تدوير الزاوية العليا اليمنى */
+    transition: all 0.5s ease; /* تأثير التغيير */
+    transform-style: preserve-3d; /* الحفاظ على تأثيرات الـ 3D */
+    perspective: 1000px; /* تعيين المسافة البصرية */
 }
 
-/* تغيير اللون عند التمرير على الصورة */
+/* تأثير عند تمرير الماوس على صورة اللعبة */
+@keyframes rotateImage {
+    0% {
+        transform: rotate(0deg) scale(1.1) translateZ(0px); /* بداية التحريك */
+    }
+    50% {
+        transform: rotate(180deg) scale(0.9) translateZ(-50px); /* تغيير الزاوية والحجم */
+    }
+    100% {
+        transform: rotate(360deg) scale(1.1) translateZ(0px); /* النهاية */
+    }
+}
+
+/* عند تمرير الماوس على البطاقة، يتم تطبيق تأثيرات على الصورة */
 .game-card:hover .game-card-image {
-    filter: brightness(0.85); /* إضافة تأثير إضاءة عند التمرير */
+    animation: rotateImage 3s cubic-bezier(0.4, 0, 0.2, 1) forwards; /* تطبيق الرسوم المتحركة */
+    filter: brightness(0.85) contrast(1.1); /* تعديل السطوع والتباين */
 }
 
-/* تنسيق محتوى الكارد */
+/* عند النقر على البطاقة، يتم تطبيق تأثير أسرع على الصورة */
+.game-card:active .game-card-image {
+    animation: rotateImage 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* تنسيق محتوى البطاقة */
 .game-card-content {
-    padding: 16px;
-    flex-grow: 1; /* يجعل المحتوى يملأ المساحة المتبقية */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 16px; /* إضافة هوامش داخلية */
+    flex-grow: 1; /* السماح بتوسيع المحتوى ليملأ المساحة المتاحة */
+    display: flex; /* استخدام الفليكس لتوزيع المحتوى */
+    flex-direction: column; /* ترتيب العناصر عمودياً */
+    justify-content: space-between; /* توزيع العناصر على طول المحور الرأسي */
 }
 
-/* رأس الكارد - عرض العنوان والتفاصيل */
+/* تنسيق العنوان داخل البطاقة */
 .game-card-header {
-    display: flex;
-    justify-content: space-between; /* توزيع المحتوى */
-    align-items: center;
-    margin-bottom: 12px;
+    display: flex; /* استخدام الفليكس لترتيب العنوان */
+    justify-content: space-between; /* توزيع العناصر على طرفي العنصر */
+    align-items: center; /* محاذاة العناصر في الوسط */
+    margin-bottom: 12px; /* إضافة مسافة أسفل العنصر */
+    position: relative; /* تحديد الموضع بالنسبة للمحتوى */
+    overflow: hidden; /* إخفاء المحتوى الزائد */
 }
 
-/* عنوان الكارد */
+/* تنسيق العنوان */
 .game-card-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333; /* لون النص داكن لقراءة أسهل */
-    transition: color 0.3s ease; /* تأثير عند التمرير */
+    font-size: 18px; /* تحديد حجم الخط */
+    font-weight: bold; /* جعل الخط عريض */
+    transition: all 0.3s ease; /* تأثير التغيير عند التمرير */
+    position: relative; /* تحديد الموضع بالنسبة للمحتوى */
 }
 
-/* تغيير اللون عند التمرير على العنوان */
+/* إضافة خط تحت العنوان عند التمرير */
+.game-card-title::after {
+    content: ''; /* تحديد المحتوى الفارغ */
+    position: absolute; /* تحديد الموقع المطلق */
+    bottom: -2px; /* تحديد المسافة من الأسفل */
+    left: 0; /* تحديد المسافة من اليسار */
+    width: 0; /* عرض الخط */
+    height: 2px; /* ارتفاع الخط */
+    background: #1e40af; /* تحديد لون الخط */
+    transition: width 0.3s ease; /* تأثير توسيع الخط عند التمرير */
+}
+
+/* عند التمرير على البطاقة، يتغير لون العنوان */
 .game-card:hover .game-card-title {
+    color: #1e40af; /* تغيير اللون */
+    transform: translateY(-2px); /* رفع العنوان للأعلى */
+}
+
+/* عند التمرير على البطاقة، يتسع الخط تحت العنوان */
+.game-card:hover .game-card-title::after {
+    width: 100%; /* توسيع الخط لعرض كامل العنوان */
+}
+
+/* تأثير التفاعل مع الأيقونات */
+.game-card-icons {
+    display: flex; /* استخدام الفليكس لترتيب الأيقونات */
+    gap: 10px; /* مسافة بين الأيقونات */
+    opacity: 0.7; /* شفافية الأيقونات */
+    transition: all 0.3s ease; /* تأثير التغيير عند التمرير */
+}
+
+/* عند التمرير على البطاقة، تظهر الأيقونات بشكل أكبر */
+.game-card:hover .game-card-icons {
+    opacity: 1; /* زيادة الشفافية */
+    transform: translateY(-2px); /* رفع الأيقونات للأعلى */
+}
+
+/* تأثير التفاعل مع الأيقونة الفردية */
+.game-card-icon {
+    transition: all 0.3s ease; /* تأثير التغيير عند التمرير */
+}
+
+/* عند التمرير على الأيقونة، تكبر وتدور */
+.game-card-icon:hover {
+    transform: scale(1.2) rotate(5deg); /* تكبير الأيقونة والدوران */
     color: #1e40af; /* تغيير اللون عند التمرير */
 }
 
-/* الميديا كويري لتعديل تنسيق الكارد عند تصغير الشاشة */
+/* تأثير التفاعل مع النص داخل البطاقة */
+.game-card-text {
+    transition: all 0.3s ease; /* تأثير التغيير عند التمرير */
+    position: relative; /* تحديد الموضع بالنسبة للمحتوى */
+    padding-left: 10px; /* إضافة هامش داخلي يسار النص */
+}
 
-/* شاشة بحجم أقل من 1024px (الكمبيوتر الصغير أو الأجهزة اللوحية) */
+/* عند التمرير على النص، يتغير لونه ويبدأ بالحركة */
+.game-card-text:hover {
+    color: #1e40af; /* تغيير اللون */
+    transform: translateX(5px); /* تحريك النص لليمين */
+}
+
+/* إضافة خط جانبي عند التمرير على النص */
+.game-card-text::before {
+    content: ''; /* تحديد المحتوى الفارغ */
+    position: absolute; /* تحديد الموقع المطلق */
+    left: 0; /* تحديد المسافة من اليسار */
+    top: 50%; /* تحديد المسافة من الأعلى */
+    width: 3px; /* عرض الخط */
+    height: 0; /* ارتفاع الخط */
+    background: #1e40af; /* تحديد لون الخط */
+    transition: height 0.3s ease, transform 0.3s ease; /* تأثير تغير ارتفاع الخط */
+    transform: translateY(-50%); /* محاذاة الخط بشكل عمودي */
+}
+
+/* عند التمرير على النص، يتوسع الخط الجانبي */
+.game-card-text:hover::before {
+    height: 100%; /* تمديد الخط ليغطي كامل ارتفاع العنصر */
+}
+
+/* تنسيق زر تفاصيل اللعبة */
+.game-details-button {
+    display: start; /* محاذاة الزر للبداية */
+    width: 100%; /* جعل الزر يأخذ العرض بالكامل */
+    padding: 12px 24px; /* تحديد الهوامش الداخلية */
+    margin-top: 10px; /* إضافة مسافة فوق الزر */
+    font-size: 16px; /* تحديد حجم الخط */
+    font-weight: bold; /* جعل الخط عريض */
+    text-transform: uppercase; /* تحويل النص إلى حروف كبيرة */
+    border: none; /* إزالة الحدود */
+    border-radius: 8px; /* تدوير الزوايا */
+    cursor: pointer; /* تغيير شكل المؤشر عند التمرير */
+    text-align: center; /* محاذاة النص في المنتصف */
+    text-decoration: none; /* إزالة التحديد أسفل النص */
+    transition: all 0.3s ease-in-out; /* تأثير التغيير */
+    box-shadow: 0 4px 15px rgba(30, 64, 175, 0.5); /* إضافة الظل */
+    position: relative; /* تحديد الموضع بالنسبة للمحتوى */
+    overflow: hidden; /* إخفاء المحتوى الزائد */
+}
+
+/* تأثير التفاعل عند التمرير على الزر */
+.game-details-button:hover {
+    transform: scale(1.05); /* تكبير الزر قليلاً */
+    background: linear-gradient(45deg, #1a237e, #0d47a1); /* إضافة تأثير التدرج اللوني */
+    box-shadow: 0 6px 20px rgba(30, 64, 175, 0.7); /* تعزيز الظل */
+}
+
+/* تأثير عند النقر على الزر */
+.game-details-button:active {
+    transform: scale(0.95); /* تصغير الزر عند النقر */
+    box-shadow: 0 2px 10px rgba(30, 64, 175, 0.8); /* تقليل الظل */
+}
+
+/* تأثير متحرك عند تمرير الماوس على الزر */
+.game-details-button::before {
+    content: ""; /* تحديد المحتوى الفارغ */
+    position: absolute; /* تحديد الموقع المطلق */
+    top: 50%; /* تحديد المسافة من الأعلى */
+    left: 50%; /* تحديد المسافة من اليسار */
+    width: 300%; /* عرض التأثير */
+    height: 300%; /* ارتفاع التأثير */
+    background: rgba(255, 255, 255, 0.2); /* تأثير شفاف */
+    transition: all 0.6s ease; /* تأثير التحرك */
+    border-radius: 50%; /* جعل التأثير دائري */
+    transform: translate(-50%, -50%) scale(0); /* جعل التأثير يبدأ من المنتصف */
+}
+
+/* عند التمرير على الزر، يتم توسيع التأثير */
+.game-details-button:hover::before {
+    transform: translate(-50%, -50%) scale(1); /* توسيع التأثير */
+    opacity: 0; /* جعل التأثير يختفي بعد التوسع */
+}
+
+/* تنسيق الحاوية التي تحتوي على جميع الألعاب */
+.games-container {
+    display: flex; /* استخدام الفليكس لترتيب الألعاب */
+    flex-wrap: wrap; /* السماح بتغليف العناصر */
+    justify-content: flex-end; /* محاذاة العناصر إلى اليمين */
+    gap: 20px; /* مسافة بين العناصر */
+    padding-right: 15px; /* إضافة هامش داخلي من اليمين */
+}
+
+/* تنسيق الحاوية عند الشاشات الصغيرة */
 @media (max-width: 1024px) {
     .game-card {
-        max-width: 280px; /* تقليص عرض الكارد */
-        margin-right: 20px; /* إضافة مسافة من الجهة اليمنى */
-        margin-left: 20px; /* إضافة مسافة من الجهة اليسرى */
-        transition: all 0.3s ease; /* إضافة تأثير عند تغيير العرض */
+        max-width: 280px; /* تقليل عرض البطاقة */
+        margin: 10px; /* إضافة هامش حول البطاقة */
+        margin-left: auto; /* محاذاة البطاقة لليسار */
+        margin-right: 25px; /* إضافة هامش لليمين */
     }
 
     .game-card-image {
-        height: 200px; /* تعديل ارتفاع الصورة */
+        height: 180px; /* تقليل ارتفاع الصورة */
+    }
+
+    .game-card-title {
+        font-size: 16px; /* تقليل حجم الخط */
     }
 }
 
-/* شاشة بحجم أقل من 768px (الأجهزة اللوحية الصغيرة) */
+/* تنسيق الحاوية عند الشاشات الأصغر */
 @media (max-width: 768px) {
     .game-card {
-        max-width: 240px; /* تقليص عرض الكارد أكثر */
-        margin-right: 15px; /* إضافة مسافة من الجهة اليمنى */
-        margin-left: 10px; /* تقليص المسافة من الجهة اليسرى */
+        max-width: 240px; /* تقليل عرض البطاقة */
+        margin-right: 30px; /* إضافة هامش لليمين */
     }
 
     .game-card-image {
-        height: 180px; /* تعديل ارتفاع الصورة */
+        height: 160px; /* تقليل ارتفاع الصورة */
+    }
+
+    .game-card-content {
+        padding: 12px; /* إضافة هوامش داخلية */
+    }
+
+    .game-card-title {
+        font-size: 14px; /* تقليل حجم الخط */
     }
 }
 
-/* شاشة بحجم أقل من 480px (الهواتف المحمولة) */
+/* تنسيق الحاوية عند الشاشات الصغيرة جداً */
 @media (max-width: 480px) {
     .game-card {
-        max-width: 100%; /* استخدام العرض الكامل */
-        margin-right: 10px; /* إضافة مسافة من الجهة اليمنى */
-        margin-left: 5px; /* تقليص المسافة من الجهة اليسرى */
+        max-width: 200px; /* تقليل عرض البطاقة */
+        margin-right: 35px; /* إضافة هامش لليمين */
     }
 
     .game-card-image {
-        height: 160px; /* تعديل ارتفاع الصورة */
+        height: 140px; /* تقليل ارتفاع الصورة */
     }
 
-    /* تحسين العنوان في الشاشات الصغيرة */
+    .game-card-content {
+        padding: 10px; /* إضافة هوامش داخلية */
+    }
+
+    .game-card-icons {
+        gap: 5px; /* تقليل المسافة بين الأيقونات */
+    }
+
+    .game-details-button {
+        padding: 8px 16px; /* تقليل حجم الزر */
+        font-size: 12px; /* تقليل حجم الخط */
+    }
+}
+
+/* تنسيق الحاوية عند الشاشات الأصغر من 360px */
+@media (max-width: 360px) {
+    .game-card {
+        max-width: 180px; /* تقليل عرض البطاقة */
+        margin-right: 40px; /* إضافة هامش لليمين */
+    }
+
+    .game-card-image {
+        height: 120px; /* تقليل ارتفاع الصورة */
+    }
+
     .game-card-title {
-        font-size: 16px; /* تقليص حجم العنوان ليكون مناسبًا للشاشة الصغيرة */
-        padding: 0 8px;
-        text-align: center; /* محاذاة العنوان في المنتصف */
+        font-size: 13px; /* تقليل حجم الخط */
     }
-}
 
-/* تأثيرات التمرير المتقدمة */
-@media (max-width: 1024px) {
+    .game-card-text {
+        font-size: 12px; /* تقليل حجم الخط للنص */
+    }
+
     .game-card:hover {
-        transform: translateY(-10px); /* إضافة تأثير رفع الكارد */
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* إضافة ظل أكثر عمقًا */
+        transform: scale(1.03); /* تقليل تأثير التمرير */
     }
 }
 
-/* إضافة تأثيرات متقدمة عند التمرير على الكاردات */
-.game-card-content {
-    position: relative;
-    z-index: 1;
+/* تنسيق الحاوية التي تحتوي على جميع الألعاب */
+.games-container {
+    display: flex; /* استخدام الفليكس لترتيب الألعاب */
+    flex-wrap: wrap; /* السماح بتغليف العناصر */
+    justify-content: flex-end; /* محاذاة العناصر إلى اليمين */
+    gap: 20px; /* مسافة بين العناصر */
+    padding-right: 15px; /* إضافة هامش داخلي من اليمين */
 }
 
-.game-card-content::after {
-    content: ''; /* إضافة خلفية متدرجة */
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)); /* تأثير تدرج */
-    border-radius: 12px;
-    transition: opacity 0.3s ease;
+/* تنسيق الحاوية عند الشاشات الأصغر من 480px */
+@media (max-width: 480px) {
+    .games-container {
+        padding-right: 10px; /* إضافة هامش داخلي من اليمين */
+        gap: 15px; /* تقليل المسافة بين العناصر */
+    }
 }
 
-.game-card:hover .game-card-content::after {
-    opacity: 0; /* جعل التدرج يختفي عند التمرير */
+/* تنسيق الحاوية عند الشاشات الأصغر من 360px */
+@media (max-width: 360px) {
+    .games-container {
+        padding-right: 5px; /* إضافة هامش داخلي من اليمين */
+        gap: 10px; /* تقليل المسافة بين العناصر */
+    }
 }

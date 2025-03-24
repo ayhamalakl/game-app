@@ -1,0 +1,23 @@
+.logo {
+    width: 80px; /* حجم مناسب للوجو */
+    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px; /* حواف ناعمة */
+    cursor: pointer;
+}
+
+.logo:hover {
+    transform: scale(1.1) rotate(3deg); /* تكبير بسيط مع دوران طفيف */
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.5); /* تأثير إضاءة حول اللوغو */
+}
+
+/* تأثير الدوران عند النقر */
+.logo:active {
+    animation: spinEffect 0.6s ease-in-out;
+}
+
+@keyframes spinEffect {
+    0% { transform: scale(1) rotate(0); }
+    30% { transform: scale(1.2) rotate(180deg); } /* زيادة الحجم أثناء الدوران */
+    100% { transform: scale(1) rotate(360deg); }
+}

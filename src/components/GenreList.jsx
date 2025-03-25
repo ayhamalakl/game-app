@@ -1,38 +1,32 @@
-// استيراد الخطافات والمكونات المطلوبة
-import useGenres from "../hooks/useGenres";              // استيراد خطاف جلب الأنواع
-import { useReducer } from "react";                      // استيراد خطاف المخفض
-import "../styelComponents/GenerList.css";               // استيراد ملف التنسيق
+import useGenres from "../hooks/useGenres";
+import { useReducer } from "react";
+import "../styelComponents/GenerList.css";
+import genreReducer from "../reducer/genreReducer";
 
-// دالة المخفض لإدارة حالة النوع المحدد
-const genreReducer = (state, action) => {
-    switch (action.type) {
-        case "SELECT_GENRE":                            // عند اختيار نوع
-            return action.payload;                       // إرجاع معرف النوع المحدد
-        default:
-            return state;                               // إرجاع الحالة الحالية
-    }
-};
-
-// مكون قائمة الأنواع الذي يستقبل دالة التحديد وحالة الفتح
 const GenreList = ({ onSelectGenre, isOpen }) => {
-    // استخدام خطاف useGenres لجلب بيانات الأنواع
-    const { data = [], isLoading } = useGenres();
-    // استخدام المخفض لإدارة حالة النوع المحدد
+    const { data = [], isLoading, error } = useGenres();
     const [selectedGenre, dispatch] = useReducer(genreReducer, null);
 
-    // عرض مؤشر التحميل إذا كانت البيانات قيد التحميل
     if (isLoading)
         return <div className="loader-container"><div className="loader"></div></div>;
 
-    // عرض قائمة الأنواع
+    if (error)
+        return <div className="error-message">
+            <p className="error-title">Error loading genres</p>
+            <p>{error.message}</p>
+        </div>;
+
+    if (!data.length)
+        return <div className="error-message">No genres found</div>;
+
     return (
         <div className={`genre-list ${isOpen ? 'genre-list-open' : ''}`}>
             {data.map((genre) => (
                 <button
-                    key={genre.id}                      // مفتاح فريد لكل نوع
+                    key={genre.id}
                     onClick={() => {
-                        onSelectGenre(genre);           // استدعاء دالة التحديد
-                        dispatch({ type: "SELECT_GENRE", payload: genre.id }); // تحديث الحالة
+                        onSelectGenre(genre);
+                        dispatch({ type: "SELECT_GENRE", payload: genre.id });
                     }}
                     className={`genre-item ${selectedGenre === genre.id ? "active" : ""}`}
                 >
@@ -44,5 +38,4 @@ const GenreList = ({ onSelectGenre, isOpen }) => {
     );
 };
 
-// تصدير المكون للاستخدام في أجزاء أخرى من التطبيق
 export default GenreList;

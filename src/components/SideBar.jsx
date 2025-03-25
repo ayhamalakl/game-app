@@ -2,7 +2,7 @@
 import { useReducer } from "react";                                    
 import { TbLayoutNavbarExpand } from "react-icons/tb"; 
 import GenreList from "./GenreList";                                  
-import toggleReducer from "../reducer/toggleReducer";                  // استيراد المخفض الخارجي
+import toggleReducer from "../reducer/toggleReducer";                 
 import "../styelComponents/SideBar.css";                             
 
 // مكون الشريط الجانبي الذي يستقبل دالة اختيار النوع

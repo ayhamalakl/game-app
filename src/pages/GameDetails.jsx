@@ -1,13 +1,11 @@
-import { Link, useParams } from "react-router-dom"; // استيراد Link للتنقل بين الصفحات، وuseParams للحصول على المعاملات من URL
-import "../styelComponents/GameDetails.css"; // استيراد ملف CSS الخاص بتنسيق الصفحة
-import useSingleGame from "../hooks/useSingelGame"; // استيراد Hook مخصص لجلب بيانات اللعبة بناءً على معرّف اللعبة
-import { useEffect, useState } from "react"; // استيراد useEffect و useState لإدارة الحالة وتنفيذ العمليات الجانبية
+import { Link, useParams } from "react-router-dom"; 
+import "../styelComponents/GameDetails.css"; 
+import useSingleGame from "../hooks/useSingelGame"; 
+import { useEffect, useState } from "react"; 
 const GameDetails = () => {
     const { id } = useParams(); // الحصول على معرّف اللعبة من URL
     const { data, isLoading, error } = useSingleGame(id); // استدعاء hook لجلب بيانات اللعبة بناءً على id
     const [currentImageIndex, setCurrentImageIndex] = useState(0); // تعريف حالة لتخزين مؤشر الصورة الحالية في المعرض
-
-    // استخدام useEffect لتحديث مؤشر الصورة تلقائيًا كل 3 ثواني إذا كانت بيانات اللعبة تحتوي على لقطات (screenshots)
     useEffect(() => {
         if (data?.screenshots) { // التحقق من وجود صور اللعبة
             const interval = setInterval(() => { // إعداد مؤقت لتغيير الصورة كل 3 ثواني
@@ -29,7 +27,6 @@ const GameDetails = () => {
         name,
         name_original,
         background_image: image,
-        // background_image_additional,
         rating,
         metacritic,
         metacritic_url,

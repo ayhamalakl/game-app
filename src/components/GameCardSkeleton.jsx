@@ -24,5 +24,4 @@ const GameCardSkeleton = () => {
     );
 };
 
-// تصدير المكون للاستخدام في أجزاء أخرى من التطبيق
 export default GameCardSkeleton;

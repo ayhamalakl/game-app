@@ -1,9 +1,9 @@
 // استيراد المكونات المطلوبة
-import GameList from "./GameList";                // استيراد مكون قائمة الألعاب
-import PlatformSelector from "./PlatformSelector"; // استيراد مكون اختيار المنصة
-import SortSelector from "./SortSelector";        // استيراد مكون اختيار الترتيب
-import { GameHeading } from "./GameHeading";      // استيراد مكون عنوان الألعاب
-// import "../styelComponents/MainContent.css"
+import GameList from "./GameList";               
+import PlatformSelector from "./PlatformSelector"; 
+import SortSelector from "./SortSelector";     
+import { GameHeading } from "./GameHeading";     
+
 
 // مكون المحتوى الرئيسي الذي يستقبل خصائص التصفية والبحث
 const MainContent = ({ 
@@ -40,5 +40,5 @@ const MainContent = ({
     );
 };
 
-// تصدير المكون للاستخدام في أجزاء أخرى من التطبيق
+
 export default MainContent;

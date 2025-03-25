@@ -1,8 +1,7 @@
-// استيراد المكونات والأدوات المطلوبة
-import "../styelComponents/GameList.css";                // استيراد ملف التنسيق
-import useGames from "../hooks/useGames";                // استيراد خطاف جلب الألعاب
-import GameCard from "./GameCard";                       // استيراد مكون بطاقة اللعبة
-import GameCardSkeleton from "./GameCardSkeleton";       // استيراد مكون الهيكل العظمي للبطاقة
+import "../styelComponents/GameList.css";                
+import useGames from "../hooks/useGames";               
+import GameCard from "./GameCard";                       
+import GameCardSkeleton from "./GameCardSkeleton";       
 
 // مكون قائمة الألعاب الذي يستقبل معايير التصفية
 const GameList = ({ selectGenre, selectPlatform, selectSortOrder, searchText }) => {
@@ -11,7 +10,6 @@ const GameList = ({ selectGenre, selectPlatform, selectSortOrder, searchText }) 
     // إنشاء مصفوفة من 6 عناصر للهياكل العظمية
     const skeletons = Array.from({ length: 6 }, (_, i) => i + 1);
 
-    // إذا كان هناك خطأ، عرض رسالة الخطأ
     if (error)
         return <div className="error-message" role="alert">⚠ {error.message}</div>;
 
@@ -26,5 +24,4 @@ const GameList = ({ selectGenre, selectPlatform, selectSortOrder, searchText }) 
     );
 };
 
-// تصدير المكون للاستخدام في أجزاء أخرى من التطبيق
 export default GameList;

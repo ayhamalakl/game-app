@@ -1,42 +1,50 @@
+// استيراد المكتبات والمكونات الأساسية
 import { useReducer, useEffect } from "react";
-import themeReducer from "./reducer/themeReducer"; // استيراد الـ reducer الخاص بالتبديل بين السمة الفاتحة والداكنة
-import gameQueryReducer from "./reducer/gameQueryReducer"; // استيراد الـ reducer الخاص بإعدادات البحث
-import MainContent from "./components/MainContent"; // استيراد المكون الذي يعرض المحتوى الرئيسي
-import NavBar from "./components/NavBar"; // استيراد مكون الشريط العلوي
-import SideBar from "./components/SideBar"; // استيراد مكون الشريط الجانبي
+import themeReducer from "./reducer/themeReducer";
+import gameQueryReducer from "./reducer/gameQueryReducer";
+import MainContent from "./components/MainContent";
+import NavBar from "./components/NavBar";
+import SideBar from "./components/SideBar";
 
 function App() {
-    // استخدام useReducer لإدارة حالة السمة (الوضع الداكن أو الفاتح)
+    // إدارة حالة السمة (مظلم/فاتح) مع حفظها في التخزين المحلي
     const [theme, dispatchTheme] = useReducer(themeReducer, localStorage.getItem("theme") || "light");
 
-    // استخدام useReducer لإدارة حالة البحث المتعلقة بالألعاب
+    // إدارة حالة تصفية الألعاب وبحثها
     const [gameQuery, dispatchGameQuery] = useReducer(gameQueryReducer, {
-        searchText: "", // نص البحث
-        genre: null, // النوع المختار
-        platform: null, // النظام الأساسي المختار
-        sortOrder: null, // ترتيب الفرز
+        searchText: "",     // نص البحث عن الألعاب
+        genre: null,        // نوع اللعبة (مثل: أكشن، مغامرة)
+        platform: null,     // منصة اللعب (مثل: PC، PS5)
+        sortOrder: null,    // ترتيب النتائج
     });
 
-    // التأثير الجانبي عند تغيير السمة، لتحديث الـ class في الـ HTML المحلي
+    // تحديث السمة في المتصفح وحفظها
     useEffect(() => {
+        // تطبيق السمة على مستوى HTML
         document.documentElement.classList.toggle("dark", theme === "dark");
-        localStorage.setItem("theme", theme); // حفظ السمة في الـ localStorage
+        // حفظ اختيار المستخدم للسمة
+        localStorage.setItem("theme", theme);
     }, [theme]);
 
-    // دالة للتبديل بين السمة الفاتحة والداكنة
+    // دالة تبديل السمة بين المظلم والفاتح
     const toggleTheme = () => dispatchTheme({ type: "TOGGLE_THEME" });
 
     return (
+        // الحاوية الرئيسية مع دعم السمة المظلمة
         <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200">
+            {/* شريط التنقل مع وظائف البحث وتبديل السمة */}
             <NavBar
                 toggleTheme={toggleTheme}
                 theme={theme}
                 onSearch={(searchText) => dispatchGameQuery({ type: "SET_SEARCH_TEXT", payload: searchText })}
             />
+            {/* تخطيط شبكي متجاوب للمحتوى */}
             <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 p-4">
+                {/* الشريط الجانبي لتصفية الأنواع */}
                 <div className="md:col-span-1 lg:col-span-1">
                     <SideBar onSelectGenre={(genre) => dispatchGameQuery({ type: "SET_GENRE", payload: genre })} />
                 </div>
+                {/* المحتوى الرئيسي مع عرض الألعاب */}
                 <div className="md:col-span-3 lg:col-span-5">
                     <MainContent
                         selectPlatform={gameQuery.platform}

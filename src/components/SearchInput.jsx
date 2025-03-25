@@ -1,6 +1,6 @@
 // استيراد خطاف المرجع من React
 import { useRef } from "react";
-// استيراد ملف التنسيق
+
 import "../styelComponents/SearchInput.css";
 
 // مكون حقل البحث الذي يستقبل دالة البحث والسمة
@@ -53,5 +53,5 @@ const SearchInput = ({ onSearch, theme }) => {
     );
 };
 
-// تصدير المكون للاستخدام في أجزاء أخرى من التطبيق
+
 export default SearchInput;

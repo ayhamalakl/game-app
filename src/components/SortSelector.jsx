@@ -1,7 +1,7 @@
 // استيراد المكونات والأدوات المطلوبة
-import "../styelComponents/SortSelector.css";                // استيراد ملف التنسيق
-import { useEffect, useRef, useReducer } from "react";      // استيراد الخطافات المطلوبة
-import toggleReducer from "../reducer/toggleReducer";        // استيراد مخفض التبديل
+import "../styelComponents/SortSelector.css";             
+import { useEffect, useRef, useReducer } from "react";      
+import toggleReducer from "../reducer/toggleReducer";        
 
 // مكون محدد الترتيب الذي يستقبل دالة الاختيار والترتيب المحدد
 const SortSelector = ({ onSelectSortOrder, selectSortOrder }) => {
@@ -68,5 +68,4 @@ const SortSelector = ({ onSelectSortOrder, selectSortOrder }) => {
     );
 };
 
-// تصدير المكون للاستخدام في أجزاء أخرى من التطبيق
 export default SortSelector;

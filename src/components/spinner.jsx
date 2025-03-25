@@ -28,5 +28,5 @@ const spinner = () => {
     );
 };
 
-// تصدير المكون للاستخدام في أجزاء أخرى من التطبيق
+
 export default spinner;

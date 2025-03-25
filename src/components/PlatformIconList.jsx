@@ -1,35 +1,35 @@
-// استيراد أيقونات المنصات من مكتبات React Icons
-import { FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid } from "react-icons/fa";  // أيقونات من Font Awesome
-import { MdPhoneIphone } from "react-icons/md";    // أيقونة iPhone من Material Design
-import { SiNintendo, SiPanasonic } from "react-icons/si";  // أيقونات من Simple Icons
-import { BsGlobe } from "react-icons/bs";          // أيقونة الويب من Bootstrap Icons
+import { FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid } from "react-icons/fa";
+import { MdPhoneIphone } from "react-icons/md";
+import { SiNintendo } from "react-icons/si";
+import { BsGlobe } from "react-icons/bs";
+import "../styelComponents/PlatformIconList.css"
 
-// مكون قائمة أيقونات المنصات الذي يستقبل مصفوفة المنصات
 const PlatformIconList = ({ platforms }) => {
-    // تعريف خريطة الأيقونات لكل منصة
     const iconMap = {
-        pc: FaWindows,           // أيقونة Windows للكمبيوتر
-        playstation: FaPlaystation,  // أيقونة PlayStation
-        xbox: FaXbox,            // أيقونة Xbox
-        nintendo: SiNintendo,    // أيقونة Nintendo
-        mac: FaApple,            // أيقونة Apple للماك
-        linux: FaLinux,          // أيقونة Linux
-        android: FaAndroid,      // أيقونة Android
-        ios: MdPhoneIphone,      // أيقونة iPhone
-        web: BsGlobe,            // أيقونة الويب
+        pc: FaWindows,
+        playstation: FaPlaystation,
+        xbox: FaXbox,
+        nintendo: SiNintendo,
+        mac: FaApple,
+        linux: FaLinux,
+        android: FaAndroid,
+        ios: MdPhoneIphone,
+        web: BsGlobe,
     };
 
     return (
-        <>
-            <div className="flex space-x-2 my-2">
-                {platforms.map((platform) => {
-                    const IconPlat = iconMap[platform.slug];    // اختيار الأيقونة المناسبة للمنصة
-                    return <IconPlat key={platform.id} className="text-gray-500 w-6 h-6" />;  // عرض الأيقونة مع التنسيق
-                })}
-            </div>
-        </>
+        <div className="platform-icons">
+            {platforms.map((platform) => {
+                const IconPlat = iconMap[platform.slug];
+                return (
+                    <div key={platform.id} className="icon-wrapper">
+                        <IconPlat className="platform-icon" />
+                        <span className="platform-tooltip">{platform.name}</span>
+                    </div>
+                );
+            })}
+        </div>
     );
 };
 
-// تصدير المكون للاستخدام في أجزاء أخرى من التطبيق
 export default PlatformIconList;

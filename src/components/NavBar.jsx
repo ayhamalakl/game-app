@@ -1,8 +1,8 @@
 // استيراد المكونات والأصول المطلوبة
-import "../styelComponents/NavBar.css";              // استيراد ملف التنسيق
-import Logo from "./Logo";                          // استيراد مكون الشعار
-import LogoImag from "../assets/images/logo.webp";   // استيراد صورة الشعار
-import SearchInput from "./SearchInput";             // استيراد مكون البحث
+import "../styelComponents/NavBar.css";           
+import Logo from "./Logo";                        
+import LogoImag from "../assets/images/logo.webp";  
+import SearchInput from "./SearchInput";             
 
 // مكون شريط التنقل الذي يستقبل خصائص تبديل السمة والبحث
 const NavBar = ({ toggleTheme, theme, onSearch }) => {
@@ -37,5 +37,5 @@ const NavBar = ({ toggleTheme, theme, onSearch }) => {
     );
 };
 
-// تصدير المكون للاستخدام في أجزاء أخرى من التطبيق
+
 export default NavBar;

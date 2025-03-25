@@ -7,30 +7,30 @@ import SearchInput from "./SearchInput";             // استيراد مكون 
 // مكون شريط التنقل الذي يستقبل خصائص تبديل السمة والبحث
 const NavBar = ({ toggleTheme, theme, onSearch }) => {
     return (
-        <nav class="navbar">
+        <nav className="navbar">
             {/* قسم الشعار */}
-            <div class="logo-container">
-                <Logo image={LogoImag} text="Game App Header" class="logo" />
+            <div className="logo-container">
+                <Logo image={LogoImag} text="Game App Header" className="logo" />
             </div>
 
             {/* قسم البحث */}
-            <div class="search-container">
+            <div className="search-container">
                 <SearchInput onSearch={onSearch} />
             </div>
 
             {/* قسم تبديل السمة */}
-            <div class="theme-toggle">
-                <label class="toggle-label">
+            <div className="theme-toggle">
+                <label className="toggle-label">
                     <input
                         type="checkbox"
-                        class="toggle-input"
+                        className="toggle-input"
                         onChange={toggleTheme}           // دالة تغيير السمة
                         checked={theme === "dark"}       // حالة السمة الحالية
                         aria-label="Toggle Dark Mode"    // نص وصفي للقارئ الآلي
                     />
-                    <div class="toggle-slider"></div>
+                    <div className="toggle-slider"></div>
                     {/* نص يعرض السمة الحالية */}
-                    <span class="toggle-text">{theme === "light" ? "Light" : "Dark"}</span>
+                    <span className="toggle-text">{theme === "light" ? "Light" : "Dark"}</span>
                 </label>
             </div>
         </nav>

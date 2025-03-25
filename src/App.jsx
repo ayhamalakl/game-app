@@ -28,25 +28,25 @@ function App() {
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-200">
-            {/* مكون الشريط العلوي مع تمرير دالة التبديل بين السمة */}
             <NavBar
                 toggleTheme={toggleTheme}
                 theme={theme}
-                // دالة لتمرير نص البحث إلى الـ reducer
                 onSearch={(searchText) => dispatchGameQuery({ type: "SET_SEARCH_TEXT", payload: searchText })}
             />
-            <div className="grid grid-cols-6 gap-4">
-                {/* مكون الشريط الجانبي مع تمرير دالة لاختيار النوع */}
-                <SideBar onSelectGenre={(genre) => dispatchGameQuery({ type: "SET_GENRE", payload: genre })} />
-                {/* مكون المحتوى الرئيسي مع تمرير دوال لتحديد النظام الأساسي، ترتيب الفرز، والنوع */}
-                <MainContent
-                    selectPlatform={gameQuery.platform}
-                    selectSortOrder={gameQuery.sortOrder}
-                    selectGenre={gameQuery.genre}
-                    searchText={gameQuery.searchText}
-                    onSelectPlatform={(platform) => dispatchGameQuery({ type: "SET_PLATFORM", payload: platform })}
-                    onSelectSortOrder={(sortOrder) => dispatchGameQuery({ type: "SET_SORT_ORDER", payload: sortOrder })}
-                />
+            <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4 p-4">
+                <div className="md:col-span-1 lg:col-span-1">
+                    <SideBar onSelectGenre={(genre) => dispatchGameQuery({ type: "SET_GENRE", payload: genre })} />
+                </div>
+                <div className="md:col-span-3 lg:col-span-5">
+                    <MainContent
+                        selectPlatform={gameQuery.platform}
+                        selectSortOrder={gameQuery.sortOrder}
+                        selectGenre={gameQuery.genre}
+                        searchText={gameQuery.searchText}
+                        onSelectPlatform={(platform) => dispatchGameQuery({ type: "SET_PLATFORM", payload: platform })}
+                        onSelectSortOrder={(sortOrder) => dispatchGameQuery({ type: "SET_SORT_ORDER", payload: sortOrder })}
+                    />
+                </div>
             </div>
         </div>
     );

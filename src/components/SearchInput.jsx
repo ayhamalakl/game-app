@@ -11,7 +11,7 @@ const SearchInput = ({ onSearch, theme }) => {
     return (
         <form 
             // تطبيق تنسيق النموذج حسب السمة
-            class={`search-form ${theme === "dark" ? "dark" : "light"}`}
+            className={`search-form ${theme === "dark" ? "dark" : "light"}`}
             // معالجة تقديم النموذج
             onSubmit={(event) => {
                 event.preventDefault();
@@ -19,12 +19,12 @@ const SearchInput = ({ onSearch, theme }) => {
             }}
         >
             {/* تسمية حقل البحث للقراء الآليين */}
-            <label htmlFor="search" class="sr-only">
+            <label htmlFor="search" className="sr-only">
                 Search
             </label>
-            <div class="search-container">
+            <div className="search-container">
                 {/* حاوية أيقونة البحث */}
-                <div class="search-icon">
+                <div className="search-icon">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -44,7 +44,7 @@ const SearchInput = ({ onSearch, theme }) => {
                     ref={ref}                    // ربط المرجع بحقل الإدخال
                     type="search"                // نوع الحقل للبحث
                     id="search"                  // معرف الحقل
-                    class="search-input"         // تنسيق الحقل
+                    className="search-input"         // تنسيق الحقل
                     placeholder="Search..."      // نص تلميحي
                     required                     // حقل مطلوب
                 />

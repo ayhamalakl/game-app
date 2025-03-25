@@ -33,26 +33,72 @@
     color: #38bdf8; /* تغيير اللون إلى الأزرق */
 }
 
-/* تنسيق أيقونة الشريط الجانبي */
 .sidebar-icon {
-    position: fixed; /* تحديد موضع الأيقونة بشكل ثابت في الشاشة */
-    top: 20px; /* تحديد المسافة من الأعلى */
-    left: 20px; /* تحديد المسافة من اليسار */
-    background: linear-gradient(145deg, #1e293b, #0f172a); /* تدرج لوني للأيقونة */
-    color: #38bdf8; /* لون الأيقونة */
-    border-radius: 50%; /* جعل الأيقونة دائرية */
-    padding: 12px; /* إضافة حشوة داخل الأيقونة */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* إضافة ظل حول الأيقونة */
-    cursor: pointer; /* تغيير المؤشر إلى يد عند التمرير */
-    z-index: 1000; /* تعيين مستوى الطبقات لجعل الأيقونة فوق العناصر الأخرى */
-    display: none; /* إخفاء الأيقونة بشكل افتراضي */
-    transition: all 0.3s ease; /* إضافة تأثيرات الانتقال لجميع الخصائص */
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    color: #38bdf8;
+    border-radius: 50%;
+    padding: 12px;
+    cursor: pointer;
+    z-index: 1000;
+    display: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 5px 5px 10px #0c1421,
+                -5px -5px 10px #1e293b;
+    border: 2px solid transparent;
+    overflow: hidden;
+}
+
+.sidebar-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(56, 189, 248, 0.3),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.sidebar-icon:hover {
+    transform: scale(1.1) rotate(5deg);
+    border-color: #38bdf8;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+}
+
+.sidebar-icon:hover::before {
+    left: 100%;
+}
+
+.sidebar-icon:active {
+    transform: scale(0.95);
+    box-shadow: inset 3px 3px 6px #0c1421,
+                inset -3px -3px 6px #1e293b;
+}
+
+/* Light mode support */
+.light .sidebar-icon {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    color: #38bdf8;
+    box-shadow: 5px 5px 10px #d9d9d9,
+                -5px -5px 10px #ffffff;
+}
+
+.light .sidebar-icon:active {
+    box-shadow: inset 3px 3px 6px #d9d9d9,
+                inset -3px -3px 6px #ffffff;
 }
 
 /* تأثير عند التمرير فوق الأيقونة */
 .sidebar-icon:hover {
     transform: scale(1.1); /* تكبير الأيقونة عند التمرير */
-    box-shadow: 0 0 15px #38bdf8; /* إضافة تأثير الظل مع توهج */
+    box-shadow: 0 0 15px #919698; /* إضافة تأثير الظل مع توهج */
 }
 
 /* تنسيق الشريط الجانبي عند الشاشات الكبيرة */
@@ -71,14 +117,44 @@
 
     .sidebar-app.open {
         transform: translateX(0); /* إعادة الشريط الجانبي إلى وضعه الطبيعي عند الفتح */
-        position: fixed; /* تحديد موضع الشريط الجانبي بشكل ثابت */
+     
     }
 }
+.sidebar-app {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: var(--background-color);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto; /* إضافة السكرول العمودي */
+    scrollbar-width: thin; /* عرض السكرول للمتصفحات الحديثة */
+    scrollbar-color: #38bdf8 transparent; /* لون السكرول */
+  }
+  
+  .sidebar-app.open {
+    left: 0;
+  }
+  
+  @media (min-width: 768px) {
+    .sidebar-app {
+      position: relative;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
+  
+    .sidebar-icon {
+      display: none;
+    }
+  }
 
 /* تنسيق الشريط الجانبي عند الشاشات الصغيرة جدًا */
 @media (max-width: 360px) {
     .sidebar-app {
-        width: 180px; /* تقليل عرض الشريط الجانبي */
+        width: 80px; /* تقليل عرض الشريط الجانبي */
     }
     
     .sidebar-app.open {

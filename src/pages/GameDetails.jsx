@@ -29,7 +29,7 @@ const GameDetails = () => {
         name,
         name_original,
         background_image: image,
-        background_image_additional,
+        // background_image_additional,
         rating,
         metacritic,
         metacritic_url,
@@ -109,23 +109,23 @@ const GameDetails = () => {
                             <h3 className="section-title">Game Statistics</h3>
                             <div className="stats-grid"> {/* شبكة الإحصائيات */}
                                 <div className="stat-item">
-                                    <span className="stat-label">Achievements</span>
+                                    <span className="stat-label">Achievements:</span>
                                     <span className="stat-value">{achievements_count}</span>
                                 </div>
                                 <div className="stat-item">
-                                    <span className="stat-label">Added by Users</span>
+                                    <span className="stat-label">Added by Users:</span>
                                     <span className="stat-value">{added}</span>
                                 </div>
                                 <div className="stat-item">
-                                    <span className="stat-label">Creators</span>
+                                    <span className="stat-label">Creators:</span>
                                     <span className="stat-value">{creators_count}</span>
                                 </div>
                                 <div className="stat-item">
-                                    <span className="stat-label">Suggestions</span>
+                                    <span className="stat-label">Suggestions:</span>
                                     <span className="stat-value">{suggestions_count}</span>
                                 </div>
                                 <div className="stat-item">
-                                    <span className="stat-label">Reviews</span>
+                                    <span className="stat-label">Reviews:</span>
                                     <span className="stat-value">{reviews_text_count}</span>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@ const GameDetails = () => {
                                 )}
                                 {reddit_url && ( // إذا كان هناك رابط لـ Reddit
                                     <a href={reddit_url} target="_blank" rel="noopener noreferrer" className="social-link">
-                                        Reddit Community: {reddit_name}
+                                        Reddit Community {reddit_name}
                                     </a>
                                 )}
                                 {metacritic_url && ( // إذا كان هناك رابط لـ Metacritic

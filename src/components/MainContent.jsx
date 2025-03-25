@@ -3,6 +3,7 @@ import GameList from "./GameList";                // استيراد مكون ق�
 import PlatformSelector from "./PlatformSelector"; // استيراد مكون اختيار المنصة
 import SortSelector from "./SortSelector";        // استيراد مكون اختيار الترتيب
 import { GameHeading } from "./GameHeading";      // استيراد مكون عنوان الألعاب
+// import "../styelComponents/MainContent.css"
 
 // مكون المحتوى الرئيسي الذي يستقبل خصائص التصفية والبحث
 const MainContent = ({ 
